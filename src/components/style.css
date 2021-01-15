@@ -12,8 +12,8 @@
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
     display: block;
     position: relative;
-    border-radius: 20px;
     background-color: white;
+    border-radius: 20px;
     margin: 2%;
     width: 25%;
     text-align: center;
@@ -26,10 +26,9 @@
       position: absolute;
       z-index: -1;
       top: -100x;
-      right: -100px;
-      background: #00838d;
-      height: 50px;
-      width: 50px;
+      right: -100px;   
+      height: 60px;
+      width: 60px;
       border-radius: 32px;
       transform: scale(1);
       transform-origin: 50% 50%;
@@ -60,6 +59,34 @@
   .card__number {
     font-size: 0.89rem;
     font-weight: 400;
+  }
+
+  .type__fire:before {
+    background-color: #fd7d24;
+  }
+  .type__water:before {
+    background-color: #4592c4;
+  }
+  .type__bug:before {
+    background-color: #729f3f;
+  }
+  .type__grass:before {
+    background-color: #9bcc50;
+  }
+  .type__poison:before {
+    background-color: #b97fc9;
+  }
+  .type__fairy:before {
+    background-color: #fdb9e9;
+  }
+  .type__normal:before {
+    background-color: #a4acaf;
+  }
+  .type__electric:before {
+    background-color: #eed535;
+  }
+  .type__ground:before {
+    background-color: #ab9842;
   }
 
   @media (max-width:798px){

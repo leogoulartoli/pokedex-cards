@@ -27,6 +27,16 @@ const pokedex = [{ id:1, name: 'Bulbasaur', image: '/images/001.png', number:'00
 {id:27, name: 'Sandshrew', image: '/images/027.png', number:'027', type:'ground'},
 {id:28, name: 'Sandslash', image: '/images/028.png', number:'028', type:'ground'},
 {id:29, name: 'Nidoran', image: '/images/029.png', number:'029', type:'poison'},
+{id:30, name: 'Nidorina', image: '/images/030.png', number:'030', type:'poison'},
+{id:31, name: 'Nidoqueen', image: '/images/031.png', number:'031', type:'poison'},
+{id:32, name: 'Nidoran', image: '/images/032.png', number:'032', type:'poison'},
+{id:33, name: 'Nidorino', image: '/images/033.png', number:'033', type:'poison'},
+{id:34, name: 'Nidoking', image: '/images/034.png', number:'034', type:'poison'},
+{id:35, name: 'Clefairy', image: '/images/035.png', number:'035', type:'fairy'},
+{id:36, name: 'Clefable', image: '/images/036.png', number:'036', type:'fairy'},
+{id:37, name: 'Vulpix', image: '/images/037.png', number:'037', type:'fire'},
+{id:38, name: 'Ninetales', image: '/images/038.png', number:'038', type:'fire'},
+{id:39, name: 'Jigglypuff', image: '/images/039.png', number:'039', type:'fairy'},
 ]
 
 export default pokedex;

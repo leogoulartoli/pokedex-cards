@@ -62,31 +62,31 @@
   }
 
   .type__fire:before {
-    background-color: #fd7d24;
+    background-color: var(--type-fire);
   }
   .type__water:before {
-    background-color: #4592c4;
+    background-color:var(--type-water);
   }
   .type__bug:before {
-    background-color: #729f3f;
+    background-color: var(--type-bug);
   }
   .type__grass:before {
-    background-color: #9bcc50;
+    background-color: var(--type-grass);
   }
   .type__poison:before {
-    background-color: #b97fc9;
+    background-color: var(--type-poison);
   }
   .type__fairy:before {
-    background-color: #fdb9e9;
+    background-color: var(--type-fairy);
   }
   .type__normal:before {
-    background-color: #a4acaf;
+    background-color: var(--type-normal);
   }
   .type__electric:before {
-    background-color: #eed535;
+    background-color: var(--type-electric);
   }
   .type__ground:before {
-    background-color: #ab9842;
+    background-color: var(--type-ground);
   }
 
   @media (max-width:798px){

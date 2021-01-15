@@ -1,11 +1,23 @@
+import { useState } from "react";
 import "./App.css";
-import ListPokemon from "./components/ListPokemon.jsx";
+import FilterPokemon from "./components/filter-pokemon/FilterPokemon";
+import ListPokemon from "./components/list-pokemon/ListPokemon.jsx";
 
 function App() {
+
+const [filteredName, setFilteredName] = useState('');
+
+const handleFilteredName = (filteredName) => {
+  setFilteredName(filteredName);
+}
+
   return (
     <div className="App">   
+    <header>
+      <FilterPokemon filteredName={handleFilteredName}/>
+    </header>
       <main>
-        <ListPokemon/>
+        <ListPokemon filteredName={filteredName}/>
       </main>
     </div>
   );

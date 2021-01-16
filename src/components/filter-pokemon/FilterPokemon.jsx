@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchIcon from "../../assets/icons/lupa.svg";
+import SearchIcon from "../../assets/icons/magnifier.svg";
 import "./style.css";
 
 const FilterPokemon = ({filteredName}) => {

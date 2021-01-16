@@ -2,7 +2,6 @@
     max-width: 1120px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
   }
   
@@ -14,7 +13,7 @@
     position: relative;
     background-color: white;
     border-radius: 20px;
-    margin: 2%;
+    margin: 2% 4%;
     width: 25%;
     text-align: center;
     z-index: 0;
@@ -91,13 +90,14 @@
 
   @media (max-width:798px){
     .card {
-      width: 44%;
+      width: 40%;
     }
   }
 
   @media (max-width:500px){
     .card {
       width: 85%;
+      margin: 2% auto;
     }
   }
 

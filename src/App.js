@@ -10,6 +10,8 @@ const [filteredName, setFilteredName] = useState('');
 const handleFilteredName = (filteredName) => {
   setFilteredName(filteredName);
 }
+let lng = window.navigator.userLanguage || window.navigator.language;
+console.log(lng);
 
   return (
     <div className="App">   

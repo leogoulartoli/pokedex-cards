@@ -19,7 +19,14 @@
     border-style: none;
     border-radius: 20px;
 }
+.filter__input:focus {
+    outline: none;
+    border-bottom: 5px solid gray;
+    transition: ease 0.2s;
+}
+
 .filter__button {
+    fill: gray;
     position: absolute;
     width: 1.3rem;
     top: 1.35rem;

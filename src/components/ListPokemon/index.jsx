@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import pokedex from '../../assets/data.js';
-import './style.css';
+import './style.scss';
 
 const ListPokemon = ({filteredName}) => {
 

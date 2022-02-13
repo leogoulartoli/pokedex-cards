@@ -39,7 +39,10 @@
     .container__filter-types {
         max-width: 400px;
         margin: 1rem auto;
-        align-items: center;
         display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 0 20px;
+        flex-wrap: wrap;
     }
 }

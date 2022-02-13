@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './style.scss'
 
 const POKEMON_TYPES = [
     'fire',
@@ -23,17 +24,13 @@ export default function FilterTypesPokemon({filteredTypes}) {
     filteredTypes(newTypeFiltered)
   }
 
-  return (
-      POKEMON_TYPES.map((type, key) => {
-      return (
-        <>
+  return (<>
+      {POKEMON_TYPES.map((type, key) => (
+        <div className="container__filter-types-checkbox" key={key}>
           <input type="checkbox" onChange={(e) => handleFilterType(type, e.target.checked)} name={type} id={type}/>
           <label>{type}</label>
-        </>
-      
-      )
-      }
+        </div>
+      ))}
+      </>
     )
-      
-  )
 }

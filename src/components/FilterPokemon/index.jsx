@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import {ReactComponent as SearchIcon} from "../../assets/icons/magnifier.svg";
 import FilterTypesPokemon from '../FilterTypesPokemon'
 import "./style.scss";
 
-const FilterPokemon = ({filteredName}) => {
+const FilterPokemon = ({filteredName, filteredTypes}) => {
 
 const handleInput = (event) => {
     filteredName(event.target.value);
@@ -17,7 +17,7 @@ const handleInput = (event) => {
           <SearchIcon className="filter__button"/>
         </div>
         <div className="container__filter-types">
-          <FilterTypesPokemon />
+          <FilterTypesPokemon filteredTypes={(types) => filteredTypes(types)} />
         </div>
       </div>
     </nav>

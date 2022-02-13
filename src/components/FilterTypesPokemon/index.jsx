@@ -12,31 +12,23 @@ const POKEMON_TYPES = [
     'ground'
 ]
 
-export default function FilterTypesPokemon() {
-  const [typefilters, setTypeFilters] = useState({
-    fire: false,
-    water: false,
-    bug: false,
-    grass: false,
-    poison: false,
-    fairy: false,
-    normal: false,
-    electric: false,
-    ground: false
-  })
+export default function FilterTypesPokemon({filteredTypes}) {
+  const [typeFiltered, setTypeFiltered] = useState(new Set())
 
   const handleFilterType = (type, value) =>{
-    const newTypeFilter = {...typefilters}
-    newTypeFilter[type] = value
-    setTypeFilters(newTypeFilter)
+    const newTypeFiltered = typeFiltered
+    if(value) newTypeFiltered.add(type)
+    else newTypeFiltered.delete(type)
+    setTypeFiltered(newTypeFiltered)
+    filteredTypes(newTypeFiltered)
   }
 
   return (
       POKEMON_TYPES.map((type, key) => {
       return (
         <>
-          <label>{type}</label>
           <input type="checkbox" onChange={(e) => handleFilterType(type, e.target.checked)} name={type} id={type}/>
+          <label>{type}</label>
         </>
       
       )

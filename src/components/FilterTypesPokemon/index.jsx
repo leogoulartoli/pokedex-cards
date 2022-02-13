@@ -16,7 +16,7 @@ export default function FilterTypesPokemon({filteredTypes}) {
   const [typeFiltered, setTypeFiltered] = useState(new Set())
 
   const handleFilterType = (type, value) =>{
-    const newTypeFiltered = typeFiltered
+    const newTypeFiltered = new Set([...typeFiltered])
     if(value) newTypeFiltered.add(type)
     else newTypeFiltered.delete(type)
     setTypeFiltered(newTypeFiltered)

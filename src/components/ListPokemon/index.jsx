@@ -14,7 +14,7 @@ const ListPokemon = ({filteredName, filteredTypes}) => {
 
     return (
         <section className="container">
-          {pokemons.map((pokemon) =>{
+          {pokemons.map((pokemon, key) =>{
             const {id, image, name, number, type} = pokemon;
             if(validateInput(name) && (!filteredTypes.size || filteredTypes.has(type))){
               return (

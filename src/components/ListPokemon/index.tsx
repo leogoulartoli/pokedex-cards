@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import pokedex from "../../assets/data";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
+import axios from "axios";
 
 interface ListPokemonProps {
   filteredName: string;
@@ -15,8 +15,48 @@ interface PokemonProps {
   type: string;
 }
 
+const limitShownPokemonsDefault = 20;
+
 const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
-  const [pokemons] = useState(pokedex);
+  const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
+  const [limitShownPokemons, setLimitShownPokemons] = useState(
+    limitShownPokemonsDefault
+  );
+
+  const fetchPokemonData = async (url: string) => {
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+      const pokemon = {
+        id: data.id,
+        name: data.name,
+        image: data.sprites.front_default,
+        number: data.order,
+        type: data.types[0].type.name,
+      };
+      return pokemon;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log("limitShownPokemons", limitShownPokemons);
+
+  const fetchPokemonList = async () => {
+    const pokemonList: PokemonProps[] = [];
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=${limitShownPokemons}&offset=0`
+    );
+    for (const pokemon of response.data.results) {
+      const pokemonData = await fetchPokemonData(pokemon.url);
+      if (pokemonData) pokemonList.push(pokemonData);
+    }
+    setPokemons(pokemonList.sort((a, b) => a.id - b.id));
+  };
+
+  useEffect(() => {
+    fetchPokemonList();
+  }, [limitShownPokemons]);
 
   const validateInput = (pokemonName: string) => {
     if (filteredName !== "") {
@@ -44,6 +84,14 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
         }
         return <></>;
       })}
+      <div className="container__button">
+        <button
+          className="button__more"
+          onClick={() => setLimitShownPokemons(limitShownPokemons + 20)}
+        >
+          Show More
+        </button>
+      </div>
     </section>
   );
 };

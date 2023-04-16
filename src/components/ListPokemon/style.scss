@@ -111,6 +111,27 @@
 .type__ground:before {
   background-color: var(--type-ground);
 }
+.type__psychic:before {
+  background-color: var(--type-psychic);
+}
+.type__fighting:before {
+  background-color: var(--type-fighting);
+}
+.type__rock:before {
+  background-color: var(--type-rock);
+}
+.type__ghost:before {
+  background-color: var(--type-ghost);
+}
+.type__ice:before {
+  background-color: var(--type-ice);
+}
+.type__dragon:before {
+  background-color: var(--type-dragon);
+}
+.type__flying:before {
+  background-color: var(--type-flying);
+}
 
 @media (max-width: 798px) {
   .card {

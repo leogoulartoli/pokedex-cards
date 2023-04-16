@@ -11,6 +11,13 @@ const POKEMON_TYPES = [
   "normal",
   "electric",
   "ground",
+  "psychic",
+  "rock",
+  "fighting",
+  "flying",
+  "ice",
+  "dragon",
+  "ghost",
 ];
 
 interface FilterTypesPokemonProps {

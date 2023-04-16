@@ -8,6 +8,13 @@
   --type-poison: #b97fc9;
   --type-electric: #eed535;
   --type-normal: #a4acaf;
+  --type-psychic: #f85988;
+  --type-rock: #a38c21;
+  --type-ice: #51c4e7;
+  --type-flying: #a890f0;
+  --type-fighting: #c02f28;
+  --type-ghost: #6f5898;
+  --type-dragon: #7038f8;
 }
 
 body {

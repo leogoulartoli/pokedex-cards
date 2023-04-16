@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import axios from "axios";
+import { useLocalStorage } from "../../hooks/use-local-storage.hooks";
 
 interface ListPokemonProps {
   filteredName: string;
@@ -18,9 +19,14 @@ interface PokemonProps {
 const limitShownPokemonsDefault = 20;
 
 const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
-  const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-  const [limitShownPokemons, setLimitShownPokemons] = useState(
-    limitShownPokemonsDefault
+  const { getItem, setItem } = useLocalStorage();
+  const pokemonFromLocalStorage = getItem("pokemons");
+
+  const [pokemons, setPokemons] = useState<PokemonProps[]>(
+    pokemonFromLocalStorage?.pokemonList || []
+  );
+  const [offsetPokemons, setOffsetPokemons] = useState(
+    pokemonFromLocalStorage?.offset || 0
   );
 
   const fetchPokemonData = async (url: string) => {
@@ -36,27 +42,32 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
       };
       return pokemon;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
-  console.log("limitShownPokemons", limitShownPokemons);
+  console.log(limitShownPokemonsDefault, offsetPokemons);
 
-  const fetchPokemonList = async () => {
-    const pokemonList: PokemonProps[] = [];
+  const fetchPokemonList = async (offset: number) => {
+    const pokemonList: PokemonProps[] = [...pokemons];
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limitShownPokemons}&offset=0`
+      `https://pokeapi.co/api/v2/pokemon?limit=${limitShownPokemonsDefault}&offset=${offset}`
     );
     for (const pokemon of response.data.results) {
       const pokemonData = await fetchPokemonData(pokemon.url);
       if (pokemonData) pokemonList.push(pokemonData);
     }
-    setPokemons(pokemonList.sort((a, b) => a.id - b.id));
+    const pokemonListSorted = pokemonList.sort((a, b) => a.id - b.id);
+    setPokemons(pokemonListSorted);
+    setItem("pokemons", {
+      pokemonList: pokemonListSorted,
+      offset: offset,
+    });
   };
 
   useEffect(() => {
-    fetchPokemonList();
-  }, [limitShownPokemons]);
+    if (!pokemonFromLocalStorage) fetchPokemonList(offsetPokemons);
+  }, []);
 
   const validateInput = (pokemonName: string) => {
     if (filteredName !== "") {
@@ -64,6 +75,11 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
       return regex.test(pokemonName);
     }
     return true;
+  };
+
+  const handleShowMorePokemons = (offset: number) => {
+    fetchPokemonList(offset);
+    setOffsetPokemons(offset);
   };
 
   return (
@@ -87,7 +103,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
       <div className="container__button">
         <button
           className="button__more"
-          onClick={() => setLimitShownPokemons(limitShownPokemons + 20)}
+          onClick={() => handleShowMorePokemons(offsetPokemons + 20)}
         >
           Show More
         </button>

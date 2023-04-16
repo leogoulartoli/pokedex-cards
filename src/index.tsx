@@ -6,11 +6,7 @@ import "./index.css";
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
-  createRoot(rootElement).render(
-    <React.StrictMode>
-      <CardsPage />
-    </React.StrictMode>
-  );
+  createRoot(rootElement).render(<CardsPage />);
 } else {
   console.error("root element not found");
 }

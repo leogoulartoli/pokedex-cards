@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "../../hooks/use-local-storage.hook";
+import { LoadingSpinner } from "../LoadingSpinner";
+import { PokemonCard } from "../PokemonCard";
 import "./style.scss";
 
 interface ListPokemonProps {
@@ -9,7 +11,7 @@ interface ListPokemonProps {
   filteredTypes: Set<string>;
 }
 
-interface PokemonProps {
+export interface PokemonProps {
   id: number;
   name: string;
   image: string;
@@ -27,6 +29,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
   const [pokemons, setPokemons] = useState<PokemonProps[]>(
     pokemonFromLocalStorage?.pokemonList || []
   );
+  const [fetching, setFetching] = useState(false);
   const [offsetPokemons, setOffsetPokemons] = useState(
     pokemonFromLocalStorage?.offset || 0
   );
@@ -49,6 +52,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
   };
 
   const fetchPokemonList = async (offset: number) => {
+    setFetching(true);
     const pokemonList: PokemonProps[] = [...pokemons];
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limitShownPokemonsDefault}&offset=${offset}`
@@ -63,6 +67,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
       pokemonList: pokemonListSorted,
       offset: offset,
     });
+    setFetching(false);
   };
 
   useEffect(() => {
@@ -85,30 +90,26 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
   return (
     <section className="container">
       {pokemons.map((pokemon: PokemonProps) => {
-        const { id, image, name, number, type } = pokemon;
+        const { name, type } = pokemon;
         if (
           validateInput(name) &&
           (!filteredTypes.size || filteredTypes.has(type))
         ) {
-          return (
-            <div className={`card type__${type}`} key={id}>
-              <img src={image} alt={name} />
-              <h4 className="card__title">{name}</h4>
-              <h6 className="card__number">
-                {t("pokemon.number", { number })}
-              </h6>
-            </div>
-          );
+          return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
         }
         return <></>;
       })}
       <div className="container__button">
-        <button
-          className="button__more"
-          onClick={() => handleShowMorePokemons(offsetPokemons + 20)}
-        >
-          {t("pokemon.showMore")}
-        </button>
+        {fetching ? (
+          <LoadingSpinner />
+        ) : (
+          <button
+            className="button__more"
+            onClick={() => handleShowMorePokemons(offsetPokemons + 20)}
+          >
+            {t("pokemon.showMore")}
+          </button>
+        )}
       </div>
     </section>
   );

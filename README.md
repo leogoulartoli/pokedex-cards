@@ -12,7 +12,7 @@ You can filter the pokemons and discover what is your main type hovering your mo
 2. Run `npm install` or `yarn install` to install the dependencies
 3. Run `npm start` or `yarn start` to start the application
 
-### How to run with docker
+## How to run with docker
 
 1. Clone this repository
 2. Run `docker build -t pokedex-cards .` inside of the project folder
@@ -23,5 +23,6 @@ You can filter the pokemons and discover what is your main type hovering your mo
 - React
 - Docker
 - Data from [PokeAPI](https://pokeapi.co/)
+- Typescript
 - CSS
 - HTML

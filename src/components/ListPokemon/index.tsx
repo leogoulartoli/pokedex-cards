@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./style.scss";
 import axios from "axios";
-import { useLocalStorage } from "../../hooks/use-local-storage.hooks";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "../../hooks/use-local-storage.hook";
+import "./style.scss";
 
 interface ListPokemonProps {
   filteredName: string;
@@ -19,6 +20,7 @@ interface PokemonProps {
 const limitShownPokemonsDefault = 20;
 
 const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
+  const { t } = useTranslation();
   const { getItem, setItem } = useLocalStorage();
   const pokemonFromLocalStorage = getItem("pokemons");
 
@@ -45,8 +47,6 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
       console.error(e);
     }
   };
-
-  console.log(limitShownPokemonsDefault, offsetPokemons);
 
   const fetchPokemonList = async (offset: number) => {
     const pokemonList: PokemonProps[] = [...pokemons];
@@ -94,7 +94,9 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
             <div className={`card type__${type}`} key={id}>
               <img src={image} alt={name} />
               <h4 className="card__title">{name}</h4>
-              <h6 className="card__number">#{number}</h6>
+              <h6 className="card__number">
+                {t("pokemon.number", { number })}
+              </h6>
             </div>
           );
         }
@@ -105,7 +107,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
           className="button__more"
           onClick={() => handleShowMorePokemons(offsetPokemons + 20)}
         >
-          Show More
+          {t("pokemon.showMore")}
         </button>
       </div>
     </section>

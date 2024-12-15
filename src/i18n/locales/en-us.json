@@ -1,0 +1,10 @@
+{
+  "pokemon": {
+    "showMore": "Show More",
+    "number": "#{{number}}"
+  },
+  "filter": {
+    "searchPlaceholder": "Search Pokemon",
+    "typeFilter": "Filter by type"
+  }
+}

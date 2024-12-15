@@ -1,7 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { CardsPage } from "./pages/CardsPage/index";
+import "./i18n/config";
 import "./index.css";
+import { CardsPage } from "./pages/CardsPage/index";
 
 const rootElement = document.getElementById("root");
 

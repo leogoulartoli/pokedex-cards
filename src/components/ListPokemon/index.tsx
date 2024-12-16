@@ -76,8 +76,8 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
 
   const validateInput = (pokemonName: string) => {
     if (filteredName !== "") {
-      const regex = new RegExp(filteredName + "\\w+");
-      return regex.test(pokemonName);
+      const regex = new RegExp(filteredName.toLowerCase() + "\\w+");
+      return regex.test(pokemonName.toLowerCase());
     }
     return true;
   };

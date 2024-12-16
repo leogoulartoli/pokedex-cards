@@ -16,12 +16,20 @@ const FilterPokemon = ({ filteredName, filteredTypes }: FilterPokemonProps) => {
   return (
     <nav>
       <div className="container__filter">
-        <div className="container__filter-button">
-          <input className="filter__input" type="text" onChange={handleInput} />
-          <SearchIcon className="filter__button" />
-        </div>
-        <div className="container__filter-types">
-          <FilterTypesPokemon filteredTypes={(types) => filteredTypes(types)} />
+        <div className="container__filter-content">
+          <div className="container__filter-button">
+            <SearchIcon className="filter__button" />
+            <input
+              className="filter__input"
+              type="text"
+              onChange={handleInput}
+            />
+          </div>
+          <div>
+            <FilterTypesPokemon
+              filteredTypes={(types) => filteredTypes(types)}
+            />
+          </div>
         </div>
       </div>
     </nav>

@@ -104,7 +104,7 @@ const ListPokemon = ({ filteredName, filteredTypes }: ListPokemonProps) => {
           <LoadingSpinner />
         ) : (
           <button
-            className="button__more"
+            className="primary-button"
             onClick={() => handleShowMorePokemons(offsetPokemons + 20)}
           >
             {t("pokemon.showMore")}

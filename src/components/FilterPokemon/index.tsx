@@ -18,7 +18,7 @@ const FilterPokemon = ({ filteredName, filteredTypes }: FilterPokemonProps) => {
       <div className="container__filter">
         <div className="container__filter-content">
           <div className="container__filter-button">
-            <SearchIcon className="filter__button" />
+            <SearchIcon className="filter__search-icon" />
             <input
               className="filter__input"
               type="text"

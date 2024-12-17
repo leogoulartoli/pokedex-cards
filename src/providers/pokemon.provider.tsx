@@ -10,7 +10,7 @@ import { PokemonProps } from "../components/ListPokemon";
 import { useGetPokemon } from "../hooks/use-get-pokemon.hook";
 import { useLocalStorage } from "../hooks/use-local-storage.hook";
 
-interface PokemonContextType {
+export interface PokemonContextType {
   pokemons: PokemonProps[];
   fetching: boolean;
   handleFetchPokemon: () => void;

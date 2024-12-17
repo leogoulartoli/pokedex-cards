@@ -12,7 +12,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className={`card type__${type}`} key={id}>
+    <div className={`card type__${type}`} key={id} data-testid={id}>
       <img src={image} alt={name} />
       <h4 className="card__title">{name}</h4>
       <h6 className="card__number">{t("pokemon.number", { number })}</h6>
